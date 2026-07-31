@@ -200,6 +200,86 @@
     .gallery{grid-template-columns:1fr;}
     .g-wide,.g-tall{grid-column:auto;grid-row:auto;}
   }
+  .gallery figure{cursor:pointer;}
+  .gallery figure:focus-visible{outline:2px solid var(--marigold);outline-offset:3px;}
+  .gallery-hint{
+    margin:-24px 0 28px;color:var(--ink-soft);font-size:0.95rem;
+  }
+
+  /* ================= LIGHTBOX SLIDESHOW ================= */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(15,21,38,.94);
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .3s ease, visibility .3s ease;
+  }
+  .lightbox.open{opacity:1;visibility:visible;pointer-events:auto;}
+  .lightbox-inner{
+    position:relative;width:min(960px,92vw);max-height:88vh;
+    display:flex;flex-direction:column;align-items:center;gap:16px;
+  }
+  .lightbox-stage{
+    position:relative;width:100%;flex:1;min-height:0;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:16px;overflow:hidden;
+    border:1px solid rgba(224,168,62,.28);
+    background:#000;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.7);
+    touch-action:pan-y;
+  }
+  .lightbox-stage img{
+    max-width:100%;max-height:72vh;width:auto;height:auto;
+    object-fit:contain;user-select:none;-webkit-user-drag:none;
+  }
+  .lightbox-caption{
+    text-align:center;color:rgba(243,231,201,.85);font-size:0.95rem;
+    min-height:1.4em;
+  }
+  .lightbox-meta{
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    color:var(--marigold);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+  }
+  .lightbox-btn{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:48px;height:48px;border-radius:50%;
+    border:1px solid rgba(243,231,201,.35);
+    background:rgba(15,21,38,.65);color:var(--moon);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:1.4rem;line-height:1;
+    transition:border-color .2s ease, color .2s ease, background .2s ease;
+    z-index:2;
+  }
+  .lightbox-btn:hover{border-color:var(--marigold);color:var(--marigold);background:rgba(15,21,38,.85);}
+  .lightbox-btn:focus-visible{outline:2px solid var(--marigold);outline-offset:2px;}
+  .lightbox-prev{left:12px;}
+  .lightbox-next{right:12px;}
+  .lightbox-close{
+    position:absolute;top:18px;right:18px;z-index:101;
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid rgba(243,231,201,.35);
+    background:rgba(15,21,38,.7);color:var(--moon);
+    cursor:pointer;font-size:1.35rem;line-height:1;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .lightbox-close:hover{border-color:var(--marigold);color:var(--marigold);}
+  .lightbox-dots{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:7px;max-width:100%;
+  }
+  .lightbox-dots button{
+    width:8px;height:8px;border-radius:50%;padding:0;border:0;
+    background:rgba(243,231,201,.3);cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .lightbox-dots button[aria-current="true"]{
+    background:var(--marigold);transform:scale(1.25);
+  }
+  @media (max-width:640px){
+    .lightbox-btn{width:40px;height:40px;font-size:1.2rem;}
+    .lightbox-prev{left:6px;}
+    .lightbox-next{right:6px;}
+    .lightbox-stage img{max-height:62vh;}
+  }
 
   /* ================= LIVE ================= */
   .live{
@@ -450,23 +530,39 @@
 <section class="day" id="gallery">
   <div class="wrap">
     <span class="eyebrow">From the venue</span>
-    <h2 style="margin:14px 0 40px;font-size:clamp(1.8rem,3.4vw,2.6rem);">A look inside Karmyog Vātika</h2>
+    <h2 style="margin:14px 0 12px;font-size:clamp(1.8rem,3.4vw,2.6rem);">A look inside Karmyog Vātika</h2>
+    <p class="gallery-hint">Tap any photo to view as slides — one at a time, with next and previous.</p>
     <div class="gallery">
-      <figure class="g-tall"><img loading="lazy" src="images/02-stage-banner.jpg" alt="Guru Purnima stage with banner, marigold and greenery"><figcaption>The stage, ready for Dharma Katha</figcaption></figure>
-      <figure><img loading="lazy" src="images/01-venue-setup.jpg" alt="Venue setup with plants and screen"><figcaption>Venue setup</figcaption></figure>
-      <figure><img loading="lazy" src="images/06-hall-wide.jpg" alt="Hall with meditation mats laid out"><figcaption>Mats laid out for meditation</figcaption></figure>
-      <figure class="g-wide"><img loading="lazy" src="images/07-group-photo-a.jpg" alt="Attendees gathered around MahAcharya and guest"><figcaption>The community gathers</figcaption></figure>
-      <figure><img loading="lazy" src="images/03-welcome-desk.jpg" alt="Welcome desk at Karmyog Vatika"><figcaption>Welcome desk</figcaption></figure>
-      <figure><img loading="lazy" src="images/09-yogic-performance.jpg" alt="Yogic performance pose by two performers"><figcaption>Special yogic performance</figcaption></figure>
-      <figure class="g-tall"><img loading="lazy" src="images/08-plants-gifts.jpg" alt="Table of plants and divine gifts"><figcaption>Divine Gifts — plants for attendees</figcaption></figure>
-      <figure><img loading="lazy" src="images/04-donation-box.jpg" alt="Donation box amid aloe plants"><figcaption>Dakshina Patro</figcaption></figure>
-      <figure><img loading="lazy" src="images/05-naivedya-table.jpg" alt="Naivedya table with plants and offerings"><figcaption>Naivedya table</figcaption></figure>
-      <figure class="g-wide"><img loading="lazy" src="images/12-dharma-katha.jpg" alt="MahAcharya Shri Sourabh J. Sarkar delivering Dharma Katha"><figcaption>Dharma Katha in progress</figcaption></figure>
-      <figure><img loading="lazy" src="images/13-audience-circle.jpg" alt="Attendees seated in a circle listening"><figcaption>Listening in stillness</figcaption></figure>
-      <figure><img loading="lazy" src="images/14-candle-lit.jpg" alt="Candle lit meditation setting"><figcaption>Candlelight & meditation</figcaption></figure>
+      <figure class="g-tall" tabindex="0" role="button" aria-label="Open slideshow: The stage, ready for Dharma Katha"><img loading="lazy" src="images/02-stage-banner.jpg" alt="Guru Purnima stage with banner, marigold and greenery"><figcaption>The stage, ready for Dharma Katha</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Venue setup"><img loading="lazy" src="images/01-venue-setup.jpg" alt="Venue setup with plants and screen"><figcaption>Venue setup</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Mats laid out for meditation"><img loading="lazy" src="images/06-hall-wide.jpg" alt="Hall with meditation mats laid out"><figcaption>Mats laid out for meditation</figcaption></figure>
+      <figure class="g-wide" tabindex="0" role="button" aria-label="Open slideshow: The community gathers"><img loading="lazy" src="images/07-group-photo-a.jpg" alt="Attendees gathered around MahAcharya and guest"><figcaption>The community gathers</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Welcome desk"><img loading="lazy" src="images/03-welcome-desk.jpg" alt="Welcome desk at Karmyog Vatika"><figcaption>Welcome desk</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Special yogic performance"><img loading="lazy" src="images/09-yogic-performance.jpg" alt="Yogic performance pose by two performers"><figcaption>Special yogic performance</figcaption></figure>
+      <figure class="g-tall" tabindex="0" role="button" aria-label="Open slideshow: Divine Gifts"><img loading="lazy" src="images/08-plants-gifts.jpg" alt="Table of plants and divine gifts"><figcaption>Divine Gifts — plants for attendees</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Dakshina Patro"><img loading="lazy" src="images/04-donation-box.jpg" alt="Donation box amid aloe plants"><figcaption>Dakshina Patro</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Naivedya table"><img loading="lazy" src="images/05-naivedya-table.jpg" alt="Naivedya table with plants and offerings"><figcaption>Naivedya table</figcaption></figure>
+      <figure class="g-wide" tabindex="0" role="button" aria-label="Open slideshow: Dharma Katha in progress"><img loading="lazy" src="images/12-dharma-katha.jpg" alt="MahAcharya Shri Sourabh J. Sarkar delivering Dharma Katha"><figcaption>Dharma Katha in progress</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Listening in stillness"><img loading="lazy" src="images/13-audience-circle.jpg" alt="Attendees seated in a circle listening"><figcaption>Listening in stillness</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Candlelight and meditation"><img loading="lazy" src="images/14-candle-lit.jpg" alt="Candle lit meditation setting"><figcaption>Candlelight & meditation</figcaption></figure>
     </div>
   </div>
 </section>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Photo slideshow">
+  <button type="button" class="lightbox-close" id="lbClose" aria-label="Close slideshow">&times;</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-stage" id="lbStage">
+      <button type="button" class="lightbox-btn lightbox-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+      <img id="lbImg" src="" alt="">
+      <button type="button" class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">&#8250;</button>
+    </div>
+    <p class="lightbox-caption" id="lbCaption"></p>
+    <div class="lightbox-meta"><span id="lbCounter"></span></div>
+    <div class="lightbox-dots" id="lbDots" role="tablist" aria-label="Slide indicators"></div>
+  </div>
+</div>
 
 <!-- ================= LIVE STREAM ================= -->
 <section class="live">
@@ -537,6 +633,104 @@
       glow.setAttribute('opacity', (0.85 + Math.sin(t*1.3)*0.1).toFixed(2));
     }, 120);
   }
+
+  // gallery lightbox slideshow
+  (function(){
+    const slides = Array.from(figs).map(fig=>{
+      const img = fig.querySelector('img');
+      const cap = fig.querySelector('figcaption');
+      return {
+        src: img.getAttribute('src'),
+        alt: img.getAttribute('alt') || '',
+        caption: cap ? cap.textContent.trim() : ''
+      };
+    });
+    if(!slides.length) return;
+
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCaption = document.getElementById('lbCaption');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbDots = document.getElementById('lbDots');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    const lbClose = document.getElementById('lbClose');
+    const lbStage = document.getElementById('lbStage');
+    let index = 0;
+    let lastFocus = null;
+
+    slides.forEach((_, i)=>{
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+      dot.addEventListener('click', ()=> show(i));
+      lbDots.appendChild(dot);
+    });
+
+    function show(i){
+      index = (i + slides.length) % slides.length;
+      const s = slides[index];
+      lbImg.src = s.src;
+      lbImg.alt = s.alt;
+      lbCaption.textContent = s.caption;
+      lbCounter.textContent = (index + 1) + ' / ' + slides.length;
+      Array.from(lbDots.children).forEach((dot, di)=>{
+        dot.setAttribute('aria-current', di === index ? 'true' : 'false');
+      });
+    }
+
+    function open(i){
+      lastFocus = document.activeElement;
+      show(i);
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    figs.forEach((fig, i)=>{
+      fig.addEventListener('click', ()=> open(i));
+      fig.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          open(i);
+        }
+      });
+    });
+
+    lbPrev.addEventListener('click', ()=> show(index - 1));
+    lbNext.addEventListener('click', ()=> show(index + 1));
+    lbClose.addEventListener('click', close);
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
+
+    document.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') close();
+      else if(e.key === 'ArrowLeft') show(index - 1);
+      else if(e.key === 'ArrowRight') show(index + 1);
+    });
+
+    // swipe
+    let touchX = null;
+    lbStage.addEventListener('touchstart', (e)=>{
+      touchX = e.changedTouches[0].clientX;
+    }, {passive:true});
+    lbStage.addEventListener('touchend', (e)=>{
+      if(touchX == null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if(Math.abs(dx) < 40) return;
+      if(dx > 0) show(index - 1);
+      else show(index + 1);
+    }, {passive:true});
+  })();
 </script>
 </body>
 </html>
