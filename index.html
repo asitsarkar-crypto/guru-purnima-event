@@ -8,342 +8,384 @@
 <link rel="icon" type="image/jpeg" href="images/karmyog-vatika-logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Great+Vibes&family=Source+Sans+3:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --night:#0F1526;
-    --night-2:#1B2444;
-    --night-3:#242f57;
-    --moon:#F3E7C9;
-    --moon-dim:#e9d9ac;
-    --marigold:#E0A83E;
-    --marigold-deep:#c9862a;
-    --ember:#B5502C;
-    --leaf:#5c7a50;
-    --ink:#211d15;
-    --ink-soft:#4a4234;
-    --max:1120px;
+    --parchment:#F3E6CF;
+    --parchment-deep:#E8D5B0;
+    --paper:#FBF3E3;
+    --navy:#1B2A4A;
+    --navy-deep:#122038;
+    --navy-soft:#2A3F66;
+    --gold:#C9A24A;
+    --gold-bright:#E0B84E;
+    --gold-soft:rgba(201,162,74,.35);
+    --brown:#6B3E2E;
+    --ink:#2C2418;
+    --ink-soft:#5A4E3C;
+    --lotus:#D48A9A;
+    --max:1080px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:'Work Sans', sans-serif;
-    background:var(--night);
-    color:var(--moon);
-    line-height:1.6;
+    font-family:'Source Sans 3', sans-serif;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(224,184,78,.12), transparent 45%),
+      radial-gradient(ellipse at 80% 100%, rgba(27,42,74,.06), transparent 40%),
+      var(--parchment);
+    color:var(--ink);
+    line-height:1.65;
     overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
   }
   img{max-width:100%;display:block;}
   a{color:inherit;text-decoration:none;}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
-  h1,h2,h3{font-family:'Fraunces', serif;font-weight:600;letter-spacing:-0.01em;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+  h1,h2,h3{font-family:'Cormorant Garamond', serif;font-weight:600;letter-spacing:0.01em;color:var(--navy);}
   .bn{font-family:'Noto Serif Bengali', serif;}
+  .script{font-family:'Great Vibes', cursive;color:var(--brown);font-weight:400;}
 
-  /* ---------- utility ---------- */
   .eyebrow{
     display:inline-flex;align-items:center;gap:10px;
-    font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;
-    color:var(--marigold);font-weight:600;
+    font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;
   }
-  .eyebrow::before{content:"";width:22px;height:1px;background:var(--marigold);display:inline-block;}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);display:inline-block;}
+
   .btn{
     display:inline-flex;align-items:center;gap:8px;
-    padding:14px 26px;border-radius:999px;
-    font-weight:600;font-size:0.95rem;
+    padding:13px 24px;border-radius:4px;
+    font-weight:600;font-size:0.92rem;letter-spacing:0.04em;
     border:1px solid transparent;
-    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
     cursor:pointer;
   }
-  .btn-primary{background:var(--marigold);color:#1c1204;}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(224,168,62,.35);}
-  .btn-ghost{border-color:rgba(243,231,201,.35);color:var(--moon);}
-  .btn-ghost:hover{border-color:var(--marigold);color:var(--marigold);transform:translateY(-2px);}
+  .btn-primary{background:var(--navy);color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(18,32,56,.22);}
+  .btn-gold{
+    background:transparent;color:var(--navy);
+    border-color:var(--gold);
+  }
+  .btn-gold:hover{background:rgba(201,162,74,.15);transform:translateY(-2px);}
 
-  /* ---------- marigold divider ---------- */
-  .garland{width:100%;height:34px;overflow:hidden;line-height:0;}
-  .garland svg{width:100%;height:100%;display:block;}
-
-  /* ================= HERO ================= */
-  .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;align-items:center;
-    background:radial-gradient(120% 90% at 50% 100%, var(--night-3) 0%, var(--night-2) 45%, var(--night) 100%);
-    overflow:hidden;
-    padding-top:70px;
-  }
-  .hero-scene{position:absolute;inset:0;z-index:0;}
-  .hero-scene svg{width:100%;height:100%;display:block;}
-  .hero-inner{position:relative;z-index:2;width:100%;padding:80px 0 60px;}
-  .hero-badge{
-    display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap;
-  }
-  .hero-badge img{
-    height:44px;width:44px;border-radius:50%;display:block;
-    box-shadow:0 0 0 3px rgba(224,168,62,.25);
-  }
-  .hero-badge .lockup{
-    font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
-    color:var(--moon-dim);border:1px solid rgba(243,231,201,.25);
-    padding:6px 14px;border-radius:999px;
-  }
-  h1.title{
-    font-size:clamp(2.4rem, 6vw, 4.6rem);
-    max-width:14ch;
-    color:var(--moon);
-    margin-bottom:22px;
-  }
-  h1.title em{
-    font-style:italic;color:var(--marigold);font-weight:500;
-  }
-  .hero-sub{
-    max-width:520px;font-size:1.08rem;color:rgba(243,231,201,.82);margin-bottom:34px;
-  }
-  .hero-sub b{color:var(--moon);font-weight:600;}
-  .hero-meta{
-    display:flex;gap:34px;flex-wrap:wrap;margin-bottom:38px;
-  }
-  .hero-meta div{font-size:0.92rem;color:rgba(243,231,201,.65);}
-  .hero-meta strong{
-    display:block;font-family:'Fraunces',serif;font-size:1.15rem;color:var(--moon);font-weight:600;
-  }
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
-
-  /* ================= NAV ================= */
+  /* ---------- NAV ---------- */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
-    padding:18px 28px;
-    background:linear-gradient(to bottom, rgba(15,21,38,.92), rgba(15,21,38,0));
-    backdrop-filter:blur(2px);
+    padding:14px 24px;
+    background:rgba(243,230,207,.92);
+    border-bottom:1px solid var(--gold-soft);
+    backdrop-filter:blur(8px);
   }
-  nav .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;color:var(--moon);letter-spacing:0.01em;display:flex;align-items:center;gap:10px;}
-  nav .brand img{height:40px;width:40px;border-radius:50%;display:block;}
-  nav .brand span{color:var(--marigold);}
-  nav a.navlink{font-size:0.85rem;color:rgba(243,231,201,.75);margin-left:22px;}
-  nav a.navlink:hover{color:var(--marigold);}
-  @media (max-width:640px){ nav a.navlink{display:none;} }
+  nav .brand{
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;
+    color:var(--navy);display:flex;align-items:center;gap:10px;
+  }
+  nav .brand img{height:38px;width:38px;border-radius:50%;border:1px solid var(--gold-soft);}
+  nav .brand span{color:var(--brown);}
+  nav a.navlink{font-size:0.84rem;color:var(--ink-soft);margin-left:20px;font-weight:600;letter-spacing:0.04em;}
+  nav a.navlink:hover{color:var(--navy);}
+  @media (max-width:680px){ nav a.navlink{display:none;} }
 
-  /* ================= SECTION: DAY (cream) ================= */
-  .day{
-    background:var(--moon);
-    color:var(--ink);
+  /* ---------- HERO = POSTER ---------- */
+  .hero{
+    position:relative;z-index:1;
+    padding:88px 0 36px;
   }
-  .day .eyebrow{color:var(--ember);}
-  .day .eyebrow::before{background:var(--ember);}
-  section{padding:96px 0;}
+  .hero-frame{
+    max-width:720px;margin:0 auto;
+    padding:10px;
+    background:linear-gradient(145deg, #E8D08A, #C9A24A 40%, #8A6B2A 100%);
+    box-shadow:
+      0 0 0 1px rgba(27,42,74,.12),
+      0 28px 60px -28px rgba(27,42,74,.45);
+  }
+  .hero-frame-inner{
+    background:var(--paper);
+    padding:6px;
+    border:1px solid rgba(27,42,74,.08);
+  }
+  .hero-poster{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .hero-cta{
+    max-width:720px;margin:28px auto 0;
+    display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  }
+  .hero-welcome{
+    text-align:center;margin-bottom:22px;
+  }
+  .hero-welcome .bn{
+    display:inline-block;
+    font-size:1.05rem;color:var(--brown);
+    letter-spacing:0.04em;
+  }
+  .hero-welcome p{
+    margin-top:6px;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--navy-soft);font-weight:600;
+  }
+
+  /* ---------- NAVY BANNER ---------- */
+  .quote-banner{
+    position:relative;z-index:1;
+    background:linear-gradient(90deg, var(--navy-deep), var(--navy) 50%, var(--navy-deep));
+    color:var(--gold-bright);
+    text-align:center;
+    padding:22px 24px;
+    border-top:1px solid var(--gold);
+    border-bottom:1px solid var(--gold);
+  }
+  .quote-banner p{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:clamp(1.05rem, 2.4vw, 1.35rem);
+    max-width:46ch;margin:0 auto;line-height:1.45;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:72px 0;position:relative;z-index:1;}
+  .section-head{max-width:640px;margin-bottom:40px;}
+  .section-head h2{font-size:clamp(1.9rem, 3.6vw, 2.7rem);margin-top:10px;}
+  .section-head p{color:var(--ink-soft);margin-top:12px;font-size:1.02rem;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head.center .eyebrow{justify-content:center;}
+  .section-head.center .eyebrow::before{display:none;}
+
   .about-grid{
-    display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:start;
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:start;
   }
-  .about-grid h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:14px 0 20px;color:var(--ink);}
+  .about-grid h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin:10px 0 16px;}
   .about-grid p{color:var(--ink-soft);font-size:1.02rem;max-width:52ch;}
   .about-card{
-    background:#fff;border:1px solid rgba(0,0,0,.06);
-    border-radius:18px;padding:30px;
-    box-shadow:0 20px 40px -30px rgba(0,0,0,.35);
+    background:var(--paper);
+    border:1px solid var(--gold);
+    box-shadow:0 18px 40px -28px rgba(27,42,74,.35);
+    padding:28px 26px;
   }
-  .about-card .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed rgba(0,0,0,.12);font-size:0.95rem;}
+  .about-card .row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:11px 0;border-bottom:1px dashed rgba(27,42,74,.15);font-size:0.95rem;
+  }
   .about-card .row:last-child{border-bottom:none;}
   .about-card .row span:first-child{color:var(--ink-soft);}
-  .about-card .row span:last-child{font-weight:600;text-align:right;}
+  .about-card .row span:last-child{font-weight:700;color:var(--navy);text-align:right;}
 
-  /* ================= SECTION: NIGHT (timeline) ================= */
-  .night{background:linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%);}
-  .section-head{max-width:640px;margin-bottom:56px;}
-  .section-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--moon);margin-top:14px;}
-  .section-head p{color:rgba(243,231,201,.7);margin-top:14px;}
-
-  .timeline{position:relative;padding-left:6px;}
-  .timeline::before{
-    content:"";position:absolute;left:74px;top:6px;bottom:6px;width:1px;
-    background:linear-gradient(180deg, rgba(224,168,62,.7), rgba(224,168,62,.05));
+  /* ---------- MAHAPRASAD ---------- */
+  .maha-banner{
+    display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
+    background:linear-gradient(90deg, var(--navy-deep), var(--navy), var(--navy-deep));
+    color:#F7E7B5;
+    border:1px solid var(--gold);
+    padding:18px 28px;
+    margin:0 auto;
+    max-width:820px;
+    box-shadow:0 16px 36px -24px rgba(18,32,56,.5);
   }
-  .tl-item{display:grid;grid-template-columns:150px 1fr;gap:28px;position:relative;padding:26px 0;}
-  .tl-item + .tl-item{border-top:1px solid rgba(243,231,201,.08);}
-  .tl-time{font-family:'Fraunces',serif;color:var(--marigold);font-weight:600;font-size:1.02rem;position:relative;}
-  .tl-dot{
-    position:absolute;left:68px;top:32px;width:12px;height:12px;border-radius:50%;
-    background:var(--marigold);box-shadow:0 0 0 4px rgba(224,168,62,.18);
-  }
-  .tl-content h3{font-size:1.28rem;color:var(--moon);margin-bottom:6px;font-weight:600;}
-  .tl-content p{color:rgba(243,231,201,.65);font-size:0.96rem;max-width:52ch;}
-  @media (max-width:640px){
-    .timeline::before{left:14px;}
-    .tl-item{grid-template-columns:1fr;gap:8px;}
-    .tl-dot{left:8px;top:8px;}
-    .tl-time{padding-left:26px;}
+  .maha-banner strong{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.15rem, 2.5vw, 1.55rem);
+    letter-spacing:0.12em;text-transform:uppercase;font-weight:700;
   }
 
-  /* ================= GALLERY ================= */
+  /* ---------- SCHEDULE ---------- */
+  .schedule-panel{
+    background:rgba(251,243,227,.85);
+    border:1px solid var(--gold);
+    padding:36px 32px;
+    box-shadow:0 20px 44px -30px rgba(27,42,74,.4);
+    max-width:760px;margin:0 auto;
+  }
+  .schedule-panel .date{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.35rem;font-weight:700;color:var(--navy);
+    letter-spacing:0.04em;margin-bottom:22px;
+    padding-bottom:14px;border-bottom:1px solid var(--gold-soft);
+  }
+  .tl-item{
+    display:grid;grid-template-columns:150px 1fr;gap:18px;
+    padding:16px 0;border-bottom:1px solid rgba(27,42,74,.08);
+  }
+  .tl-item:last-child{border-bottom:none;}
+  .tl-time{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--brown);font-weight:700;font-size:1.02rem;
+  }
+  .tl-content h3{font-size:1.18rem;margin-bottom:4px;}
+  .tl-content p{color:var(--ink-soft);font-size:0.95rem;}
+  @media (max-width:560px){
+    .tl-item{grid-template-columns:1fr;gap:4px;}
+    .schedule-panel{padding:26px 18px;}
+  }
+
+  /* ---------- GALLERY (natural aspect) ---------- */
+  .gallery-hint{color:var(--ink-soft);font-size:0.95rem;margin:-12px 0 28px;}
   .gallery{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:18px;
+    align-items:start;
   }
   .gallery figure{
-    position:relative;overflow:hidden;border-radius:14px;background:#000;
-    opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;
+    margin:0;
+    background:var(--paper);
+    border:1px solid var(--gold-soft);
+    box-shadow:0 14px 28px -22px rgba(27,42,74,.4);
+    cursor:pointer;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease, box-shadow .25s ease;
   }
   .gallery figure.show{opacity:1;transform:translateY(0);}
-  .gallery figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-  .gallery figure:hover img{transform:scale(1.06);}
+  .gallery figure:hover{box-shadow:0 18px 36px -20px rgba(27,42,74,.5);border-color:var(--gold);}
+  .gallery figure:focus-visible{outline:2px solid var(--navy);outline-offset:3px;}
+  .gallery figure .thumb{
+    background:var(--parchment-deep);
+    display:flex;align-items:center;justify-content:center;
+    min-height:160px;
+    padding:10px;
+  }
+  .gallery figure img{
+    width:100%;
+    height:auto;
+    max-height:340px;
+    object-fit:contain;
+    object-position:center;
+  }
   .gallery figure figcaption{
-    position:absolute;left:0;right:0;bottom:0;padding:10px 12px;
-    font-size:0.74rem;letter-spacing:.02em;color:#fff;
-    background:linear-gradient(to top, rgba(0,0,0,.72), transparent);
-  }
-  .g-tall{grid-row:span 2;}
-  .g-wide{grid-column:span 2;}
-  @media (max-width:900px){
-    .gallery{grid-template-columns:repeat(2,1fr);}
-    .g-wide{grid-column:span 2;}
-  }
-  @media (max-width:560px){
-    .gallery{grid-template-columns:1fr;}
-    .g-wide,.g-tall{grid-column:auto;grid-row:auto;}
-  }
-  .gallery figure{cursor:pointer;}
-  .gallery figure:focus-visible{outline:2px solid var(--marigold);outline-offset:3px;}
-  .gallery-hint{
-    margin:-24px 0 28px;color:var(--ink-soft);font-size:0.95rem;
+    padding:10px 12px 12px;
+    font-size:0.82rem;color:var(--navy);
+    font-weight:600;letter-spacing:0.02em;
+    border-top:1px solid var(--gold-soft);
+    background:var(--paper);
   }
 
-  /* ================= LIGHTBOX SLIDESHOW ================= */
+  /* ---------- LIVE ---------- */
+  .live .section-head{margin-bottom:36px;}
+  .video-frame{
+    max-width:860px;margin:0 auto;
+    border:1px solid var(--gold);
+    background:#000;
+    aspect-ratio:16/9;
+    box-shadow:0 24px 48px -28px rgba(27,42,74,.45);
+  }
+  .video-frame iframe{width:100%;height:100%;border:0;display:block;}
+
+  /* ---------- RSVP ---------- */
+  .rsvp-card{
+    display:grid;grid-template-columns:1.15fr 0.85fr;
+    border:1px solid var(--gold);
+    overflow:hidden;
+    background:var(--paper);
+    box-shadow:0 24px 50px -30px rgba(27,42,74,.4);
+  }
+  .rsvp-left{padding:44px 40px;}
+  .rsvp-left h2{font-size:clamp(1.7rem,3vw,2.3rem);margin:10px 0 14px;}
+  .rsvp-left p{color:var(--ink-soft);max-width:44ch;margin-bottom:22px;}
+  .rsvp-left .venue{font-weight:700;font-size:1.08rem;color:var(--navy);margin-bottom:4px;}
+  .rsvp-left .venue-sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:22px;}
+  .call-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .call-btn{
+    display:flex;align-items:center;gap:8px;
+    background:var(--navy);color:var(--paper);
+    padding:12px 18px;font-weight:600;font-size:.9rem;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .call-btn:hover{transform:translateY(-2px);background:var(--navy-soft);}
+  .rsvp-right{
+    background:linear-gradient(160deg, var(--navy), var(--navy-deep));
+    color:#F7E7B5;padding:44px 36px;
+    display:flex;flex-direction:column;justify-content:center;
+    border-left:1px solid var(--gold);
+  }
+  .rsvp-right h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:var(--gold-bright);margin-bottom:10px;}
+  .rsvp-right p{color:rgba(247,231,181,.85);font-size:.95rem;}
+  .rsvp-right .tagline{
+    margin-top:22px;padding-top:18px;border-top:1px solid rgba(201,162,74,.35);
+    font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);
+  }
+
+  footer{
+    position:relative;z-index:1;
+    background:var(--navy-deep);
+    color:rgba(247,231,181,.65);
+    padding:42px 0 30px;text-align:center;
+    border-top:1px solid var(--gold);
+  }
+  footer .brand{
+    font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--paper);
+    display:flex;align-items:center;justify-content:center;gap:12px;
+  }
+  footer .brand img{height:48px;width:48px;border-radius:50%;border:1px solid var(--gold-soft);}
+  footer .brand span{color:var(--gold-bright);}
+  footer p{font-size:.85rem;margin-top:10px;}
+
+  @media (max-width:760px){
+    .about-grid,.rsvp-card{grid-template-columns:1fr;}
+    .rsvp-right{border-left:none;border-top:1px solid var(--gold);}
+    .rsvp-left,.rsvp-right{padding:32px 24px;}
+  }
+
+  /* ---------- LIGHTBOX ---------- */
   .lightbox{
     position:fixed;inset:0;z-index:100;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(15,21,38,.94);
+    background:rgba(18,32,56,.92);
     opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity .3s ease, visibility .3s ease;
   }
   .lightbox.open{opacity:1;visibility:visible;pointer-events:auto;}
   .lightbox-inner{
-    position:relative;width:min(960px,92vw);max-height:88vh;
-    display:flex;flex-direction:column;align-items:center;gap:16px;
+    position:relative;width:min(960px,92vw);max-height:90vh;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
   }
   .lightbox-stage{
-    position:relative;width:100%;flex:1;min-height:0;
+    position:relative;width:100%;
     display:flex;align-items:center;justify-content:center;
-    border-radius:16px;overflow:hidden;
-    border:1px solid rgba(224,168,62,.28);
-    background:#000;
-    box-shadow:0 30px 60px -30px rgba(0,0,0,.7);
+    background:var(--parchment);
+    border:1px solid var(--gold);
+    padding:12px;
+    min-height:200px;
     touch-action:pan-y;
   }
   .lightbox-stage img{
     max-width:100%;max-height:72vh;width:auto;height:auto;
     object-fit:contain;user-select:none;-webkit-user-drag:none;
   }
-  .lightbox-caption{
-    text-align:center;color:rgba(243,231,201,.85);font-size:0.95rem;
-    min-height:1.4em;
-  }
+  .lightbox-caption{text-align:center;color:rgba(247,231,181,.9);font-size:0.95rem;min-height:1.4em;}
   .lightbox-meta{
-    display:flex;align-items:center;justify-content:center;gap:18px;
-    color:var(--marigold);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+    color:var(--gold-bright);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;
   }
   .lightbox-btn{
     position:absolute;top:50%;transform:translateY(-50%);
-    width:48px;height:48px;border-radius:50%;
-    border:1px solid rgba(243,231,201,.35);
-    background:rgba(15,21,38,.65);color:var(--moon);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;font-size:1.4rem;line-height:1;
-    transition:border-color .2s ease, color .2s ease, background .2s ease;
-    z-index:2;
-  }
-  .lightbox-btn:hover{border-color:var(--marigold);color:var(--marigold);background:rgba(15,21,38,.85);}
-  .lightbox-btn:focus-visible{outline:2px solid var(--marigold);outline-offset:2px;}
-  .lightbox-prev{left:12px;}
-  .lightbox-next{right:12px;}
-  .lightbox-close{
-    position:absolute;top:18px;right:18px;z-index:101;
     width:44px;height:44px;border-radius:50%;
-    border:1px solid rgba(243,231,201,.35);
-    background:rgba(15,21,38,.7);color:var(--moon);
-    cursor:pointer;font-size:1.35rem;line-height:1;
-    transition:border-color .2s ease, color .2s ease;
+    border:1px solid var(--gold);
+    background:rgba(18,32,56,.75);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:1.35rem;z-index:2;
   }
-  .lightbox-close:hover{border-color:var(--marigold);color:var(--marigold);}
-  .lightbox-dots{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:7px;max-width:100%;
+  .lightbox-btn:hover{background:var(--navy);color:var(--gold-bright);}
+  .lightbox-prev{left:8px;}
+  .lightbox-next{right:8px;}
+  .lightbox-close{
+    position:absolute;top:16px;right:16px;z-index:101;
+    width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--gold);
+    background:rgba(18,32,56,.8);color:var(--paper);
+    cursor:pointer;font-size:1.3rem;
   }
+  .lightbox-close:hover{color:var(--gold-bright);}
+  .lightbox-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;}
   .lightbox-dots button{
     width:8px;height:8px;border-radius:50%;padding:0;border:0;
-    background:rgba(243,231,201,.3);cursor:pointer;
-    transition:background .2s ease, transform .2s ease;
+    background:rgba(247,231,181,.3);cursor:pointer;
   }
-  .lightbox-dots button[aria-current="true"]{
-    background:var(--marigold);transform:scale(1.25);
-  }
-  @media (max-width:640px){
-    .lightbox-btn{width:40px;height:40px;font-size:1.2rem;}
-    .lightbox-prev{left:6px;}
-    .lightbox-next{right:6px;}
-    .lightbox-stage img{max-height:62vh;}
-  }
-
-  /* ================= LIVE ================= */
-  .live{
-    background:var(--night);
-    text-align:center;
-  }
-  .live .section-head{margin:0 auto 44px;text-align:center;}
-  .video-frame{
-    max-width:860px;margin:0 auto;border-radius:18px;overflow:hidden;
-    box-shadow:0 30px 60px -30px rgba(0,0,0,.6);
-    border:1px solid rgba(224,168,62,.25);
-    aspect-ratio:16/9;background:#000;
-  }
-  .video-frame iframe{width:100%;height:100%;border:0;display:block;}
-
-  /* ================= RSVP ================= */
-  .rsvp{
-    background:linear-gradient(160deg, var(--night-2), var(--night));
-    position:relative;
-  }
-  .rsvp-card{
-    display:grid;grid-template-columns:1.1fr 0.9fr;gap:0;
-    border-radius:22px;overflow:hidden;
-    background:linear-gradient(135deg, #ffffff, #fbf3df);
-    color:var(--ink);
-  }
-  .rsvp-left{padding:52px;}
-  .rsvp-left h2{font-size:clamp(1.7rem,3vw,2.3rem);margin:14px 0 16px;}
-  .rsvp-left p{color:var(--ink-soft);max-width:44ch;margin-bottom:28px;}
-  .rsvp-left .venue{font-weight:600;font-size:1.05rem;margin-bottom:4px;}
-  .rsvp-left .venue-sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:26px;}
-  .call-row{display:flex;gap:14px;flex-wrap:wrap;}
-  .call-btn{
-    display:flex;align-items:center;gap:10px;
-    background:var(--night);color:var(--moon);
-    padding:13px 20px;border-radius:12px;font-weight:600;font-size:.92rem;
-    transition:transform .2s ease;
-  }
-  .call-btn:hover{transform:translateY(-2px);}
-  .rsvp-right{
-    background:var(--ember);position:relative;
-    display:flex;flex-direction:column;justify-content:center;padding:52px;color:#fff;
-  }
-  .rsvp-right h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;margin-bottom:10px;}
-  .rsvp-right p{color:rgba(255,255,255,.85);font-size:.95rem;}
-  .rsvp-right .maha{
-    margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.25);
-    font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#ffe6c9;
-  }
-  @media (max-width:760px){
-    .rsvp-card{grid-template-columns:1fr;}
-    .about-grid{grid-template-columns:1fr;}
-  }
-
-  /* ================= FOOTER ================= */
-  footer{
-    background:var(--night);padding:50px 0 34px;
-    border-top:1px solid rgba(243,231,201,.08);
-    text-align:center;
-  }
-  footer .brand{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--moon);display:flex;align-items:center;justify-content:center;gap:12px;}
-  footer .brand img{height:52px;width:52px;border-radius:50%;display:block;}
-  footer .brand span{color:var(--marigold);}
-  footer p{color:rgba(243,231,201,.45);font-size:.85rem;margin-top:10px;}
+  .lightbox-dots button[aria-current="true"]{background:var(--gold-bright);transform:scale(1.25);}
 
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;}
@@ -353,7 +395,7 @@
 <body>
 
 <nav>
-  <div class="brand"><img src="images/karmyog-vatika-logo.jpg" alt="Karmyog Vātika logo"> Karmyog <span>Vātika</span></div>
+  <a class="brand" href="#top"><img src="images/karmyog-vatika-logo.jpg" alt="Karmyog Vātika logo"> Karmyog <span>Vātika</span></a>
   <div>
     <a class="navlink" href="#about">About</a>
     <a class="navlink" href="#schedule">Schedule</a>
@@ -362,115 +404,43 @@
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
-<header class="hero">
-  <div class="hero-scene" aria-hidden="true">
-    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#F8EFD6" stop-opacity="1"/>
-          <stop offset="55%" stop-color="#EAD9A8" stop-opacity=".55"/>
-          <stop offset="100%" stop-color="#EAD9A8" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#182150"/>
-          <stop offset="100%" stop-color="#0F1526"/>
-        </linearGradient>
-        <radialGradient id="flame" cx="50%" cy="30%" r="70%">
-          <stop offset="0%" stop-color="#FFE9B0"/>
-          <stop offset="55%" stop-color="#E0A83E"/>
-          <stop offset="100%" stop-color="#B5502C" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-
-      <!-- stars -->
-      <g fill="#F3E7C9">
-        <circle cx="120" cy="90" r="1.6" opacity=".7"/>
-        <circle cx="260" cy="160" r="1.2" opacity=".5"/>
-        <circle cx="1180" cy="70" r="1.6" opacity=".6"/>
-        <circle cx="1310" cy="150" r="1.2" opacity=".5"/>
-        <circle cx="980" cy="60" r="1" opacity=".4"/>
-        <circle cx="650" cy="40" r="1.3" opacity=".5"/>
-        <circle cx="80" cy="220" r="1" opacity=".4"/>
-        <circle cx="1370" cy="260" r="1.1" opacity=".45"/>
-      </g>
-
-      <!-- moon + glow -->
-      <g id="moon-group">
-        <circle cx="720" cy="180" r="220" fill="url(#moonGlow)"/>
-        <circle cx="720" cy="180" r="86" fill="#F6ECD2"/>
-        <circle cx="695" cy="155" r="10" fill="#E9D9AC" opacity=".6"/>
-        <circle cx="745" cy="205" r="6" fill="#E9D9AC" opacity=".5"/>
-        <circle cx="750" cy="150" r="4" fill="#E9D9AC" opacity=".5"/>
-      </g>
-
-      <!-- water -->
-      <rect x="0" y="560" width="1440" height="340" fill="url(#waterGrad)"/>
-      <g stroke="#3a457a" stroke-width="1.4" opacity=".4">
-        <path d="M0 600 Q 200 590 400 600 T 800 600 T 1200 600 T 1440 600"/>
-        <path d="M0 650 Q 200 640 400 650 T 800 650 T 1200 650 T 1440 650"/>
-        <path d="M0 700 Q 200 690 400 700 T 800 700 T 1200 700 T 1440 700"/>
-      </g>
-      <ellipse cx="720" cy="600" rx="60" ry="200" fill="#F6ECD2" opacity=".07"/>
-
-      <!-- floating diya -->
-      <g transform="translate(720,700)">
-        <ellipse cx="0" cy="18" rx="46" ry="10" fill="#3a2a12" opacity=".7"/>
-        <path d="M-40 10 Q 0 34 40 10 Q 30 -2 0 -2 Q -30 -2 -40 10 Z" fill="#7a4a22"/>
-        <circle cx="0" cy="-4" r="26" fill="url(#flame)" id="flameGlow"/>
-        <path id="flamePath" d="M0 -8 C 6 -20, -6 -28, 0 -40 C 8 -28, 10 -16, 0 -8 Z" fill="#FFD98A"/>
-      </g>
-    </svg>
-  </div>
-
-  <div class="wrap hero-inner">
-    <div class="hero-badge">
-      <img src="images/karmyog-vatika-logo.jpg" alt="Karmyog Vātika logo">
-      <span class="lockup bn">শুভ গুরু পূর্ণিমা</span>
-      <span class="lockup">Guru Purnima · Held on 29 July 2026</span>
+<!-- HERO: poster as masthead -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-welcome">
+      <span class="bn">শুভ গুরু পূর্ণিমা</span>
+      <p>All are warmly welcome</p>
     </div>
-    <h1 class="title">Purnima Meditation <em>&</em> Dharma Katha</h1>
-    <p class="hero-sub">An evening of inner stillness, timeless wisdom and divine connection — led by <b>MahAcharya Shri Sourabh J. Sarkar</b>, presented by Karmyog Vātika. Relive the evening below.</p>
-
-    <div class="hero-meta">
-      <div>Held on<strong>Wed, 29 July 2026</strong></div>
-      <div>Began<strong>6:00 PM</strong></div>
-      <div>Venue<strong>Uniclub, First Floor</strong></div>
+    <div class="hero-frame">
+      <div class="hero-frame-inner">
+        <img
+          class="hero-poster"
+          src="images/poster.png"
+          alt="Guru Purnima poster — MahAcharya Shri Sourabh J. Sarkar blowing the shankh, Karmyog Vātika logo, and the full moon. Purnima Meditation & Dharma Katha, 29 July 2026."
+          width="678"
+          height="1024"
+        >
+      </div>
     </div>
-
-    <div class="hero-ctas">
+    <div class="hero-cta">
       <a class="btn btn-primary" href="#gallery">See Photos from the Evening</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/live/qCGi_b3kCAM" target="_blank" rel="noopener">Watch the Full Recording</a>
+      <a class="btn btn-gold" href="https://www.youtube.com/live/qCGi_b3kCAM" target="_blank" rel="noopener">Watch the Full Recording</a>
     </div>
   </div>
 </header>
 
-<div class="garland" aria-hidden="true">
-  <svg viewBox="0 0 1440 34" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 6 Q 60 30 120 6 T 240 6 T 360 6 T 480 6 T 600 6 T 720 6 T 840 6 T 960 6 T 1080 6 T 1200 6 T 1320 6 T 1440 6" fill="none" stroke="#E0A83E" stroke-width="1.5" opacity=".5"/>
-    <g fill="#E0A83E">
-      <circle cx="60" cy="20" r="5"/><circle cx="180" cy="20" r="5"/><circle cx="300" cy="20" r="5"/>
-      <circle cx="420" cy="20" r="5"/><circle cx="540" cy="20" r="5"/><circle cx="660" cy="20" r="5"/>
-      <circle cx="780" cy="20" r="5"/><circle cx="900" cy="20" r="5"/><circle cx="1020" cy="20" r="5"/>
-      <circle cx="1140" cy="20" r="5"/><circle cx="1260" cy="20" r="5"/><circle cx="1380" cy="20" r="5"/>
-    </g>
-    <g fill="#B5502C" opacity=".8">
-      <circle cx="120" cy="12" r="3"/><circle cx="240" cy="12" r="3"/><circle cx="360" cy="12" r="3"/>
-      <circle cx="480" cy="12" r="3"/><circle cx="600" cy="12" r="3"/><circle cx="720" cy="12" r="3"/>
-      <circle cx="840" cy="12" r="3"/><circle cx="960" cy="12" r="3"/><circle cx="1080" cy="12" r="3"/>
-      <circle cx="1200" cy="12" r="3"/><circle cx="1320" cy="12" r="3"/>
-    </g>
-  </svg>
+<div class="quote-banner" aria-hidden="false">
+  <p>An evening of inner stillness, timeless wisdom and divine connection.</p>
 </div>
 
-<!-- ================= ABOUT ================= -->
-<section class="day" id="about">
+<!-- ABOUT -->
+<section id="about">
   <div class="wrap about-grid">
     <div>
       <span class="eyebrow">The gathering</span>
-      <h2>Where nature and communities prospered together</h2>
-      <p>Karmyog Vātika is a club for lifelong learning — a garden of shared practice where mindfulness, community, and the rhythms of nature meet. This Guru Purnima, the community gathered under the full moon for meditation, dharma katha, a yogic performance and a shared meal.</p>
-      <p style="margin-top:16px;">The evening was led by <strong>MahAcharya Shri Sourabh J. Sarkar</strong>, with special yogic performances by Acharya Rhea and Acharya Pritam. Scroll down to relive the evening in photos and the full recording.</p>
+      <h2>On this auspicious <span class="script" style="font-size:1.15em;">Guru Purnima</span></h2>
+      <p>Karmyog Vātika is a club for lifelong learning — a garden of shared practice where mindfulness, community, and the rhythms of nature meet. This Guru Purnima, the community gathered for meditation, dharma katha, a yogic performance and a shared meal.</p>
+      <p style="margin-top:14px;">The evening was led by <strong>MahAcharya Shri Sourabh J. Sarkar</strong>, with special yogic performances by Acharya Rhea and Acharya Pritam. Relive the evening below in photos and the full recording.</p>
     </div>
     <div class="about-card">
       <div class="row"><span>Occasion</span><span>Guru Purnima</span></div>
@@ -484,72 +454,126 @@
   </div>
 </section>
 
-<!-- ================= SCHEDULE ================= -->
-<section class="night" id="schedule">
+<!-- MAHAPRASAD -->
+<section style="padding-top:0;padding-bottom:24px;">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">How the evening unfolded</span>
-      <h2>Four movements of the night</h2>
-      <p>From the first walk into stillness to the shared meal that closed the evening.</p>
+    <div class="maha-banner">
+      <strong>Mahaprasad for all attendees</strong>
     </div>
+  </div>
+</section>
 
-    <div class="timeline">
+<!-- SCHEDULE -->
+<section id="schedule" style="padding-top:40px;">
+  <div class="wrap">
+    <div class="section-head center" style="margin-bottom:28px;">
+      <span class="eyebrow">How the evening unfolded</span>
+      <h2>Event schedule</h2>
+    </div>
+    <div class="schedule-panel">
+      <div class="date">29.07.2026 &nbsp;|&nbsp; Wednesday</div>
       <div class="tl-item">
-        <div class="tl-time">6:00 – 6:45 PM<span class="tl-dot"></span></div>
+        <div class="tl-time">6:00 – 6:45 PM</div>
         <div class="tl-content">
           <h3>Prakriti Jagran Yatra</h3>
-          <p>A gentle procession awakening awareness of nature — the opening walk that settled the mind before meditation began.</p>
+          <p>A gentle procession awakening awareness of nature — settling the mind before meditation.</p>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-time">6:45 – 7:30 PM<span class="tl-dot"></span></div>
+        <div class="tl-time">6:45 – 7:30 PM</div>
         <div class="tl-content">
           <h3>Purnima Meditation & Dharma Katha</h3>
-          <p>A guided full-moon meditation followed by dharma katha, led by MahAcharya Shri Sourabh J. Sarkar.</p>
+          <p>Guided full-moon meditation and dharma katha, led by MahAcharya Shri Sourabh J. Sarkar.</p>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-time">7:30 – 7:45 PM<span class="tl-dot"></span></div>
+        <div class="tl-time">7:30 – 7:45 PM</div>
         <div class="tl-content">
           <h3>Special Yogic Performance</h3>
-          <p>A live yogic performance by Acharya Rhea and Acharya Pritam.</p>
+          <p>Live yogic performance by Acharya Rhea and Acharya Pritam.</p>
         </div>
       </div>
       <div class="tl-item">
-        <div class="tl-time">7:45 PM onwards<span class="tl-dot"></span></div>
+        <div class="tl-time">7:45 PM onwards</div>
         <div class="tl-content">
           <h3>Maha Prasad</h3>
-          <p>An evening meal shared together, offered to every attendee to close the gathering.</p>
+          <p>An evening meal shared together, offered to every attendee.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= GALLERY ================= -->
-<section class="day" id="gallery">
+<!-- GALLERY -->
+<section id="gallery">
   <div class="wrap">
-    <span class="eyebrow">From the venue</span>
-    <h2 style="margin:14px 0 12px;font-size:clamp(1.8rem,3.4vw,2.6rem);">A look inside Karmyog Vātika</h2>
-    <p class="gallery-hint">Tap any photo to view as slides — one at a time, with next and previous.</p>
+    <div class="section-head">
+      <span class="eyebrow">From the venue</span>
+      <h2>A look inside Karmyog Vātika</h2>
+    </div>
+    <p class="gallery-hint">Tap any photo to view as slides — full image, one at a time.</p>
     <div class="gallery">
-      <figure class="g-tall" tabindex="0" role="button" aria-label="Open slideshow: The stage, ready for Dharma Katha"><img loading="lazy" src="images/02-stage-banner.jpg" alt="Guru Purnima stage with banner, marigold and greenery"><figcaption>The stage, ready for Dharma Katha</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Venue setup"><img loading="lazy" src="images/01-venue-setup.jpg" alt="Venue setup with plants and screen"><figcaption>Venue setup</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Mats laid out for meditation"><img loading="lazy" src="images/06-hall-wide.jpg" alt="Hall with meditation mats laid out"><figcaption>Mats laid out for meditation</figcaption></figure>
-      <figure class="g-wide" tabindex="0" role="button" aria-label="Open slideshow: The community gathers"><img loading="lazy" src="images/07-group-photo-a.jpg" alt="Attendees gathered around MahAcharya and guest"><figcaption>The community gathers</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Welcome desk"><img loading="lazy" src="images/03-welcome-desk.jpg" alt="Welcome desk at Karmyog Vatika"><figcaption>Welcome desk</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Special yogic performance"><img loading="lazy" src="images/09-yogic-performance.jpg" alt="Yogic performance pose by two performers"><figcaption>Special yogic performance</figcaption></figure>
-      <figure class="g-tall" tabindex="0" role="button" aria-label="Open slideshow: Divine Gifts"><img loading="lazy" src="images/08-plants-gifts.jpg" alt="Table of plants and divine gifts"><figcaption>Divine Gifts — plants for attendees</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Dakshina Patro"><img loading="lazy" src="images/04-donation-box.jpg" alt="Donation box amid aloe plants"><figcaption>Dakshina Patro</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Naivedya table"><img loading="lazy" src="images/05-naivedya-table.jpg" alt="Naivedya table with plants and offerings"><figcaption>Naivedya table</figcaption></figure>
-      <figure class="g-wide" tabindex="0" role="button" aria-label="Open slideshow: Dharma Katha in progress"><img loading="lazy" src="images/12-dharma-katha.jpg" alt="MahAcharya Shri Sourabh J. Sarkar delivering Dharma Katha"><figcaption>Dharma Katha in progress</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Listening in stillness"><img loading="lazy" src="images/13-audience-circle.jpg" alt="Attendees seated in a circle listening"><figcaption>Listening in stillness</figcaption></figure>
-      <figure tabindex="0" role="button" aria-label="Open slideshow: Candlelight and meditation"><img loading="lazy" src="images/14-candle-lit.jpg" alt="Candle lit meditation setting"><figcaption>Candlelight & meditation</figcaption></figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: The stage, ready for Dharma Katha">
+        <div class="thumb"><img loading="lazy" src="images/02-stage-banner.jpg" alt="Guru Purnima stage with banner, marigold and greenery"></div>
+        <figcaption>The stage, ready for Dharma Katha</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Venue setup">
+        <div class="thumb"><img loading="lazy" src="images/01-venue-setup.jpg" alt="Venue setup with plants and screen"></div>
+        <figcaption>Venue setup</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Mats laid out for meditation">
+        <div class="thumb"><img loading="lazy" src="images/06-hall-wide.jpg" alt="Hall with meditation mats laid out"></div>
+        <figcaption>Mats laid out for meditation</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: The community gathers">
+        <div class="thumb"><img loading="lazy" src="images/07-group-photo-a.jpg" alt="Attendees gathered around MahAcharya and guest"></div>
+        <figcaption>The community gathers</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Welcome desk">
+        <div class="thumb"><img loading="lazy" src="images/03-welcome-desk.jpg" alt="Welcome desk at Karmyog Vatika"></div>
+        <figcaption>Welcome desk</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Special yogic performance">
+        <div class="thumb"><img loading="lazy" src="images/09-yogic-performance.jpg" alt="Yogic performance pose by two performers"></div>
+        <figcaption>Special yogic performance</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Divine Gifts">
+        <div class="thumb"><img loading="lazy" src="images/08-plants-gifts.jpg" alt="Table of plants and divine gifts"></div>
+        <figcaption>Divine Gifts — plants for attendees</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Dakshina Patro">
+        <div class="thumb"><img loading="lazy" src="images/04-donation-box.jpg" alt="Donation box amid aloe plants"></div>
+        <figcaption>Dakshina Patro</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Naivedya table">
+        <div class="thumb"><img loading="lazy" src="images/05-naivedya-table.jpg" alt="Naivedya table with plants and offerings"></div>
+        <figcaption>Naivedya table</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Dharma Katha in progress">
+        <div class="thumb"><img loading="lazy" src="images/12-dharma-katha.jpg" alt="MahAcharya Shri Sourabh J. Sarkar delivering Dharma Katha"></div>
+        <figcaption>Dharma Katha in progress</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Listening in stillness">
+        <div class="thumb"><img loading="lazy" src="images/13-audience-circle.jpg" alt="Attendees seated in a circle listening"></div>
+        <figcaption>Listening in stillness</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Candlelight and meditation">
+        <div class="thumb"><img loading="lazy" src="images/14-candle-lit.jpg" alt="Candle lit meditation setting"></div>
+        <figcaption>Candlelight & meditation</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Community group photo">
+        <div class="thumb"><img loading="lazy" src="images/10-group-photo-b.jpg" alt="Group photo of attendees"></div>
+        <figcaption>Together after the gathering</figcaption>
+      </figure>
+      <figure tabindex="0" role="button" aria-label="Open slideshow: Another community group photo">
+        <div class="thumb"><img loading="lazy" src="images/11-group-photo-c.jpg" alt="Another group photo of attendees"></div>
+        <figcaption>The sangha</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- ================= LIGHTBOX ================= -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Photo slideshow">
   <button type="button" class="lightbox-close" id="lbClose" aria-label="Close slideshow">&times;</button>
   <div class="lightbox-inner">
@@ -559,18 +583,18 @@
       <button type="button" class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">&#8250;</button>
     </div>
     <p class="lightbox-caption" id="lbCaption"></p>
-    <div class="lightbox-meta"><span id="lbCounter"></span></div>
+    <div class="lightbox-meta" id="lbCounter"></div>
     <div class="lightbox-dots" id="lbDots" role="tablist" aria-label="Slide indicators"></div>
   </div>
 </div>
 
-<!-- ================= LIVE STREAM ================= -->
+<!-- LIVE -->
 <section class="live">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head center">
       <span class="eyebrow">Missed it live?</span>
       <h2>Watch the full recording</h2>
-      <p>The complete session — meditation, dharma katha and the yogic performance — was streamed live and is now available to watch anytime.</p>
+      <p>The complete session — meditation, dharma katha and the yogic performance — is available to watch anytime.</p>
     </div>
     <div class="video-frame">
       <iframe src="https://www.youtube.com/embed/qCGi_b3kCAM" title="Purnima Meditation & Dharma Katha — Live Stream" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
@@ -578,25 +602,25 @@
   </div>
 </section>
 
-<!-- ================= RSVP ================= -->
-<section class="rsvp" id="rsvp">
+<!-- RSVP -->
+<section id="rsvp">
   <div class="wrap">
     <div class="rsvp-card">
       <div class="rsvp-left">
         <span class="eyebrow">Thank you</span>
         <h2>Grateful to everyone who joined us</h2>
-        <p>This Guru Purnima gathering has concluded — thank you to everyone who sat with us on the mats, in meditation, and over Maha Prasad. Want to be part of the next one at Karmyog Vātika?</p>
+        <p>This Guru Purnima gathering has concluded — thank you to everyone who sat with us in meditation and over Maha Prasad. Want to be part of the next one at Karmyog Vātika?</p>
         <div class="venue">Uniclub, First Floor</div>
         <div class="venue-sub">Guru Purnima · 29 July 2026 · Event Concluded</div>
         <div class="call-row">
-          <a class="call-btn" href="tel:+919123987344">📞 +91 91239 87344</a>
-          <a class="call-btn" href="tel:+919830024611">📞 +91 98300 24611</a>
+          <a class="call-btn" href="tel:+919123987344">+91 91239 87344</a>
+          <a class="call-btn" href="tel:+919830024611">+91 98300 24611</a>
         </div>
       </div>
       <div class="rsvp-right">
         <h3>Stay connected for what's next</h3>
         <p>Reach out on the numbers alongside to hear about upcoming gatherings, meditations and dharma katha sessions at Karmyog Vātika.</p>
-        <div class="maha">Where nature and communities prosper together</div>
+        <div class="tagline">Where nature and communities prosper together</div>
       </div>
     </div>
   </div>
@@ -611,30 +635,14 @@
 </footer>
 
 <script>
-  // reveal gallery images on scroll
   const figs = document.querySelectorAll('.gallery figure');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
     });
-  }, {threshold:0.15});
+  }, {threshold:0.12});
   figs.forEach(f=>io.observe(f));
 
-  // gentle flame flicker
-  const flame = document.getElementById('flamePath');
-  const glow = document.getElementById('flameGlow');
-  if(flame && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    let t = 0;
-    setInterval(()=>{
-      t += 0.15;
-      const s = 1 + Math.sin(t)*0.06 + Math.random()*0.02;
-      flame.setAttribute('transform', `scale(${s.toFixed(3)})`);
-      flame.setAttribute('transform-origin', '0 -8');
-      glow.setAttribute('opacity', (0.85 + Math.sin(t*1.3)*0.1).toFixed(2));
-    }, 120);
-  }
-
-  // gallery lightbox slideshow
   (function(){
     const slides = Array.from(figs).map(fig=>{
       const img = fig.querySelector('img');
@@ -717,7 +725,6 @@
       else if(e.key === 'ArrowRight') show(index + 1);
     });
 
-    // swipe
     let touchX = null;
     lbStage.addEventListener('touchstart', (e)=>{
       touchX = e.changedTouches[0].clientX;
